@@ -2474,3 +2474,122 @@ body {
     color: var(--color-black);
 
 }
+/* CSS para crear una cuadrícula fluida que elimina los huecos */
+.galeria-fluida {
+    display: block; /* Rompe la estructura rígida de filas de Bootstrap */
+    column-count: 1;
+    column-gap: 1.5rem; /* Espaciado entre columnas */
+}
+
+/* Ajuste de columnas por tamaño de pantalla (Responsivo) */
+@media (min-width: 768px) {
+    .galeria-fluida {
+        column-count: 2; /* 2 columnas en tablets */
+    }
+}
+
+@media (min-width: 992px) {
+    .galeria-fluida {
+        column-count: 3; /* 3 columnas en pantallas grandes */
+    }
+}
+
+/* Asegura que las tarjetas y fotos no se corten a la mitad entre columnas */
+.galeria-fluida .portfolio-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.galeria-fluida .portfolio-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Opcional: bordes suaves para mejorar la estética */
+}
+/* Contenedor principal del Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex; /* Lo dejamos en flex de forma permanente */
+    justify-content: center;
+    align-items: center;
+
+    /* ESTADO INICIAL (OCULTO) */
+    opacity: 0;
+    visibility: hidden;
+
+    /* TRANSICIÓN DE SALIDA (Suave y fluida) */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Imagen dentro del Lightbox */
+.lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 3px solid #d4af37;
+    border-radius: 4px;
+
+    /* ESTADO INICIAL DE LA IMAGEN (Un poco más pequeña para el efecto de escala) */
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ESTADO ACTIVO (CUANDO SE ABRE) */
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Cuando el lightbox se activa, la imagen recupera su tamaño original */
+.lightbox.active img {
+    transform: scale(1);
+}
+
+/* Botón de cerrar (La X) */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    color: #ffd700;
+}
+/* Contenedor del título dentro del Lightbox */
+.lightbox-title {
+    position: absolute;
+    bottom: 30px; /* Lo ubica en la parte inferior de la pantalla */
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 250;
+    text-align: center;
+    letter-spacing: 1px;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo sutil para asegurar legibilidad */
+    padding: 8px 16px;
+    border-radius: 4px;
+    max-width: 80%;
+
+    /* Sigue la misma animación de entrada del lightbox */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Cuando el lightbox se activa, el título aparece suavemente hacia arriba */
+.lightbox.active .lightbox-title {
+    opacity: 2;
+    transform: translateY(0);
+}

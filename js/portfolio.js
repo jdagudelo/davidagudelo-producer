@@ -86,6 +86,7 @@ function initLightbox() {
     const lightboxImg = document.querySelector(".lightbox img");
     const closeBtn = document.querySelector(".lightbox-close");
 
+    const lightboxTitle = document.querySelector(".lightbox-title");
     const images = document.querySelectorAll(".portfolio-item img");
 
     if (!lightbox) return;
@@ -97,6 +98,10 @@ function initLightbox() {
             lightbox.classList.add("active");
 
             lightboxImg.src = image.src;
+
+            if (lightboxTitle) {
+                lightboxTitle.textContent = image.alt || "Proyecto";
+            }
 
             document.body.style.overflow = "hidden";
 
