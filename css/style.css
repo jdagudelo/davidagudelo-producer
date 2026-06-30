@@ -2593,3 +2593,49 @@ body {
     opacity: 2;
     transform: translateY(0);
 }
+
+/* ==================================
+MOBILE TYPOGRAPHY
+================================== */
+
+@media (max-width: 768px) {
+
+    body {
+
+        font-size: 1rem;
+
+    }
+
+    h1 {
+
+        font-size: 2.3rem !important;
+
+    }
+
+    h2 {
+
+        font-size: 1.9rem !important;
+
+    }
+
+    h3 {
+
+        font-size: 1.5rem !important;
+
+    }
+
+    p {
+
+        font-size: 1rem !important;
+
+        line-height: 1.7;
+
+    }
+
+    .lead {
+
+        font-size: 1.1rem !important;
+
+    }
+
+}
